@@ -3,6 +3,7 @@ const dotenv =require('dotenv');
 const cookieParser = require('cookie-parser');
 
 const authRoutes = require('./routes/auth.route');
+const messageRoutes = require('./routes/message.route')
 const { connectDB } = require('./lib/db');
 
 // configuration
@@ -16,6 +17,7 @@ app.use(cookieParser());
 
 // API
 app.use('/api/auth',authRoutes)
+app.use('/api/message',messageRoutes)
 
 
 app.listen(PORT,()=>{

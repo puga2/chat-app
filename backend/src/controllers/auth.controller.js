@@ -101,3 +101,12 @@ module.exports.updateProfile = async (req,res)=>{
         res.status(500).json({message:"Internal server error"});
     }
 }
+module.exports.checkAuth = async (req,res)=>{
+    try{
+        res.status(200).json(req.user);
+
+    }catch(error){
+        cnsole.log("Error in check auth controller",error.message);
+        res.status(500).json({message:"Internal server error"});
+    }
+}
