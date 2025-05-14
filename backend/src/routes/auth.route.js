@@ -12,7 +12,7 @@ router.post('/login',login);
 router.post('/logout',logout);
 router.put('/update-profile',protectRoute,updateProfile);
 
-router.post("/check",protectRoute,checkAuth)
+router.get("/check",protectRoute,checkAuth)
 
 
 module.exports = router;
