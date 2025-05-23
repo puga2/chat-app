@@ -1,4 +1,4 @@
-const { cloudinary_js_config } = require("../lib/cloudinary");
+const cloudinary = require("../lib/cloudinary")
 const { generateToken } = require("../lib/utils");
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
@@ -8,7 +8,7 @@ module.exports.signup = async (req,res)=>{
    const {fullName,email,password} = req.body;
    try{
     if(!fullName || !email || !password){
-        return res.status(400).jsom({messsage:"All fields are required"});
+        return res.status(400).json({messsage:"All fields are required"});
     }
     if(password.length < 6){
         return res.status(400).json({message:"Password must be at least 6 characters"});
@@ -91,7 +91,7 @@ module.exports.updateProfile = async (req,res)=>{
             return res.status(400).json({message:"Profile pic is required"});
 
         }
-        const uploadResponse = await cloudinary_js_config.upload(profilePic)
+        const uploadResponse = await cloudinary.uploader.upload(profilePic)
         const updatedUser = await User.findByIdAndUpdate(userId,{profilePic:uploadResponse.secure_url},{new:true});
 
         res.status(200).json(updatedUser);
